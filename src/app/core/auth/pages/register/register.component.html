@@ -1,6 +1,6 @@
 <div class="h-screen w-screen flex items-center justify-center">
     <div class="h-auto w-11/12 sm:w-9/12  md:w-11/12 lg:w-3/4 xl:w-2/4 bg-[#00523F] rounded-[10px] flex">
-      <div class="h-full w-full sm:w-full md:w-1/2 lg:w-1/2 xl:1/2 bg-[] rounded-[10px]">
+      <div class="h-full w-full sm:w-full md:w-1/2 lg:w-1/2 xl:1/2 bg-[] flex flex-col gap-5 rounded-[10px]">
         <h2 class="bg-[]  mt-2 text-[25px] text-center   font-black text-white ">Register here</h2>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
           <div class="h-auto mt-2 bg-[] flex flex-col gap-1 items-center  ">
@@ -47,7 +47,7 @@
             <div class="h-auto w-5/6 bg-[] border-b border-b-[#536271] p-1 flex flex-col gap-1">
               <p class="text-[12px] text-white" *ngIf="!submitted || !signupForm.get('password')?.errors">Password</p>
               <span *ngIf="submitted && signupForm.get('password')?.errors">
-                <span class="text-red-500 text-xs">Please enter a password.</span>
+                <span class="text-red-500 text-xs">Please enter a valid password.</span>
               </span>
               <div class="flex gap-2">
                 <span class="mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10V8c0-2.761 1.239-5 4-5s4 2.239 4 5v2M3.5 17.8v-4.6c0-1.12 0-1.68.218-2.107a2 2 0 0 1 .874-.875c.428-.217.988-.217 2.108-.217h10.6c1.12 0 1.68 0 2.108.217a2 2 0 0 1 .874.874c.218.428.218.988.218 2.108v4.6c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C18.98 21 18.42 21 17.3 21H6.7c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C3.5 19.481 3.5 18.921 3.5 17.8Zm8.5-2.05v-.5m4 .5v-.5m-8 .5v-.5"/></svg></span>
@@ -60,8 +60,8 @@
           
           </div>
           </form>
-        <div class="h-[80px] bg-[]  flex flex-col gap-2 ">
-          <p class="w-full bg-[] mt-5 text-white text-center text-[12px]">if you have an account ? | <span class="font-black text-[#f24c00] text-[15px] cursor-pointer" routerLink="/auth/login">Login</span></p>
+        <div class=" flex flex-col gap-2 ">
+          <p class="w-full bg-[] mt-5 mb-4 text-white text-center text-[12px]">if you have an account ? | <span class="font-black text-[#f24c00] text-[15px] cursor-pointer" routerLink="/auth/login">Login</span></p>
         </div>
       </div>
       <div
