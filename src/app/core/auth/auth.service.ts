@@ -43,5 +43,10 @@ interface login{
     resetPassword(data:string):Observable<any>{
       return this.http.post(this.resetpassApi,data)
     }
+
+    updatePassApi = `${this.api}/auth/updatepassword`
+    updatePassword(data: { email: string, newPassword: string }) {
+      return this.http.post(this.updatePassApi, data);
+    }
   }
   
