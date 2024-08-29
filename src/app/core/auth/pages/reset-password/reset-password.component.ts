@@ -17,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
   recoverPasswordEmail!: FormGroup;
   constructor(
     private formbuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    // private 
   ) {}
 
   ngOnInit() {

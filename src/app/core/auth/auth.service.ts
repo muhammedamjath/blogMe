@@ -37,5 +37,11 @@ interface login{
     loginpost(data:login):Observable<any>{
       return this.http.post(this.loginApi,data)
     }
+
+    // reset password
+    resetpassApi = `${this.api}/auth/resetPassword`
+    resetPassword(data:string):Observable<any>{
+      return this.http.post(this.resetpassApi,data)
+    }
   }
   

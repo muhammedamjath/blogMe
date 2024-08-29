@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  constructor(private FormBuilder:FormBuilder , private router:Router){}
+  constructor(private FormBuilder:FormBuilder , private router:Router , private authservice:AuthService){}
 
   showDiv: boolean = false;
 
@@ -25,8 +26,8 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(){
     this.loginForm=this.FormBuilder.group({
-      email:['',[Validators.required,Validators.email]],
-      password:['',Validators.required]
+      email:['muhammedamjath0@gmail.com',[Validators.required,Validators.email]],
+      password:['Amjath@2002',Validators.required]
     })
   }
   
@@ -34,6 +35,20 @@ export class LoginComponent implements OnInit {
   submitted = false;
   onSubmit(){
     this.submitted=true
+    if(this.loginForm.valid){
+      this.authservice.loginpost(this.loginForm.value).subscribe((res)=>{
+        if(res.status == 'incorrect password'){
+          alert('email or password is incorrect ')
+        }else if(res.status == 'userData not fount'){
+          alert('this account is not fount .please register')
+          this.router.navigate(['/auth/register'])
+        }else if (res.status == 'success'){
+          console.log('hello');
+          
+        }
+        
+      })
+    }
   }
 
   // optional div function call
