@@ -4,6 +4,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { SingleViewComponent } from "./pages/single-view/single-view.component";
 import { CreatedBlogsComponent } from "./pages/created-blogs/created-blogs.component";
+import { DraftsComponent } from "./pages/drafts/drafts.component";
 
 export const featureRoutes:Routes=[
     {
@@ -13,7 +14,8 @@ export const featureRoutes:Routes=[
           { path: '', component: LandingPageComponent },  
           { path: 'blogPost', component: BlogPostComponent },
           {path:'blogViwe',component:SingleViewComponent},
-          {path:'createdblogs',component:CreatedBlogsComponent}
+          {path:'createdblogs',component:CreatedBlogsComponent},
+          {path:'drafts',component:DraftsComponent}
         ]
       }
 ]

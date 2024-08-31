@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SidebarComponent } from '../../../shared/pages/sidebar/sidebar.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { isPlatformBrowser } from '@angular/common';
@@ -21,9 +21,16 @@ export class HomeComponent implements OnInit {
 
 
   sidebarOpen = true;
-  closeBtn:boolean = !this.sidebarOpen
+  closeBtn:boolean = false
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
     if (isPlatformBrowser(this.platformId)) {
       this.checkScreenSize();
     }
@@ -37,13 +44,14 @@ export class HomeComponent implements OnInit {
   }
 
   onScreenSizeLessThanLg() {
-    this.sidebarOpen = false; 
+    this.sidebarOpen = false;
+    this.closeBtn = true
   }
 
   toggleSidebar() {
     
     this.sidebarOpen = !this.sidebarOpen;
-    this.closeBtn=!this.sidebarOpen
+    this.closeBtn=!this.closeBtn
     
   }
 }
