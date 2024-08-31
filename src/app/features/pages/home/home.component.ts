@@ -2,13 +2,15 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SidebarComponent } from '../../../shared/pages/sidebar/sidebar.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     SidebarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    RouterOutlet
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
