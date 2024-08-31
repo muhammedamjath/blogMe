@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'] // Fixed typo: styleUrls instead of styleUrl
+  styleUrls: ['./sidebar.component.css'] 
 })
 export class SidebarComponent implements OnChanges, OnInit {
   name: string = 'John Doe';

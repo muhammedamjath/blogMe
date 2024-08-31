@@ -43,13 +43,11 @@ export class BlogFormComponent  {
   onSubmit(): void {
     if (this.blogForm.valid) {
       console.log('Submitting blog post:', this.blogForm.value);
-      // Add your submission logic here
     }
   }
 
   saveDraft(): void {
     console.log('Saving draft:', this.blogForm.value);
-    // Add your draft saving logic here
   }
 
   schedulePost(): void {
@@ -60,7 +58,6 @@ export class BlogFormComponent  {
       );
       console.log('Scheduling post for:', scheduledDateTime);
       console.log('Post details:', this.blogForm.value);
-      // Add your post scheduling logic here
     }
   }
 

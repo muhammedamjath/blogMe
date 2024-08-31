@@ -1,6 +1,6 @@
 <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
-    <div class="px-8 py-6 bg-gradient-to-r from-purple-600 to-indigo-600">
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+    <div class="px-8 py-6 bg-indigo-600">
       <h2 class="text-3xl font-extrabold text-white text-center">Create Your Blog </h2>
     </div>
     <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="px-8 py-6 space-y-6">
@@ -65,9 +65,6 @@
         </button>
         <button type="button" (click)="saveDraft()" class="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           Save Draft
-        </button>
-        <button type="button" (click)="schedulePost()" class="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Schedule Post
         </button>
       </div>
     </form>
