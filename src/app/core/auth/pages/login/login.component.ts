@@ -43,15 +43,15 @@ export class LoginComponent implements OnInit {
           alert('this account is not fount .please register')
           this.router.navigate(['/auth/register'])
         }else if (res.status == 'success'){
-          console.log('hello');
-          
+          localStorage.setItem('tocken',res.tocken)
+          this.router.navigate(['/feature/home'])
         }
         
       })
     }
   }
 
-  // optional div function call
+
   toggleDiv() {
     this.showDiv = !this.showDiv;
   }
