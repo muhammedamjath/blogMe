@@ -25,9 +25,11 @@
                 </p>
                 <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div class="rounded-md shadow">
-                    <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                    <button 
+                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    (click)="getStart()">
                       Get started
-                    </a>
+                    </button>
                   </div>
                   
                 </div>
@@ -96,8 +98,8 @@
           <p class="mt-4 text-lg leading-6 text-indigo-200">
             Join our community of writers and readers. Share your voice with the world.
           </p>
-          <button class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto">
-            Sign up for free
+          <button class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto" (click)="bottomBtn()">
+            {{btnContent}}
           </button>
         </div>
       </div>

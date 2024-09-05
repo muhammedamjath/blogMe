@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,19 +13,15 @@ import { RouterModule } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'] 
 })
-export class SidebarComponent implements OnChanges, OnInit {
+export class SidebarComponent implements  OnInit {
   name: string = 'John Doe';
   email: string = 'john.doe@example.com';
 
   @Input() sidebarOpen: boolean = true;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: any , private router:Router) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['sidebarOpen']) {
-      console.log('Sidebar open state changed:', this.sidebarOpen);
-    }
-  }
+  
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -50,11 +46,18 @@ export class SidebarComponent implements OnChanges, OnInit {
   }
 
   onScreenSizeLessThanLg() {
-    console.log('Screen size is less than 1024px');
     this.sidebarOpen = false; 
   }
 
   onScreenSizeLargerThanLg() {
     this.sidebarOpen = true;
+  }
+
+  logout(){
+    const token = localStorage.getItem('token')
+    if(token){
+      localStorage.removeItem('token')
+      this.router.navigate([''])
+    }
   }
 }

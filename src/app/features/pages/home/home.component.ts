@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   onScreenSizeLessThanLg() {
     this.sidebarOpen = false;
-    this.closeBtn = true
+    this.closeBtn = true 
   }
 
   toggleSidebar() {

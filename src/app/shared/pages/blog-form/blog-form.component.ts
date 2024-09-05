@@ -1,33 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'blog-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './blog-form.component.html',
-  styleUrl: './blog-form.component.css'
+  styleUrl: './blog-form.component.css',
 })
-export class BlogFormComponent  {
+export class BlogFormComponent {
   blogForm: FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
+  imagefile: any;
+
+  @Output() blogRegister = new EventEmitter<any>();
+  @Input() isEditing = false;
 
   constructor(private fb: FormBuilder) {
     this.blogForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      photo: [null],
+      photo: [null, [Validators.required]],
       scheduleDate: [''],
-      scheduleTime: ['']
+      scheduleTime: [''],
     });
   }
 
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
+    this.imagefile = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.blogForm.patchValue({ photo: file });
       this.blogForm.get('photo')?.updateValueAndValidity();
@@ -42,29 +49,26 @@ export class BlogFormComponent  {
 
   onSubmit(): void {
     if (this.blogForm.valid) {
-      console.log('Submitting blog post:', this.blogForm.value);
+      this.emitData();
+    } else if (!this.blogForm.valid) {
+      this.emitData();
     }
+  }
+
+  emitData() {
+    const formData = new FormData();
+    if (this.imagefile) {
+      formData.append('photo', this.imagefile);
+    }
+    formData.append('title', this.blogForm.value.title);
+    formData.append('description', this.blogForm.value.description);
+    formData.append('sceduleDate', this.blogForm.value.scheduleDate);
+    formData.append('scheduleTime', this.blogForm.value.scheduleTime);
+
+    this.blogRegister.emit(formData);
   }
 
   saveDraft(): void {
     console.log('Saving draft:', this.blogForm.value);
-  }
-
-  schedulePost(): void {
-    if (this.blogForm.valid) {
-      const scheduledDateTime = this.combineDateTime(
-        this.blogForm.get('scheduleDate')?.value,
-        this.blogForm.get('scheduleTime')?.value
-      );
-      console.log('Scheduling post for:', scheduledDateTime);
-      console.log('Post details:', this.blogForm.value);
-    }
-  }
-
-  combineDateTime(date: string, time: string): Date {
-    if (!date || !time) return new Date();
-    const [year, month, day] = date.split('-').map(Number);
-    const [hours, minutes] = time.split(':').map(Number);
-    return new Date(year, month - 1, day, hours, minutes);
   }
 }
