@@ -22,4 +22,20 @@ export class FeatureService{
         return this.http.get(this.blogApi)
     }
 
+    draftedBlogs():Observable<any>{
+        return this.http.get(`${this.blogApi}/getDrafs`)
+    }
+
+    postedBlogs():Observable<any>{
+        return this.http.get(`${this.blogApi}/postedBlogs`)
+    }
+
+    getSingleBlog(id:string):Observable<any>{
+        return this.http.get(`${this.blogApi}/singleGet/${id}`)
+    }
+
+    deleteBlog(id:string):Observable<any>{
+        return this.http.delete(`${this.blogApi}/${id}`)
+    }
+
 }

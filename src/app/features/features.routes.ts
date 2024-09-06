@@ -13,9 +13,9 @@ export const featureRoutes:Routes=[
         children: [
           { path: '', component: LandingPageComponent },  
           { path: 'blogPost', component: BlogPostComponent },
-          {path:'blogViwe',component:SingleViewComponent},
+          {path:'blogViwe/:id',component:SingleViewComponent},
           {path:'createdblogs',component:CreatedBlogsComponent},
-          {path:'drafts',component:DraftsComponent}
+          {path:'drafts',component:DraftsComponent},
         ]
       }
 ]

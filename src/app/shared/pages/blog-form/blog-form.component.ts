@@ -29,6 +29,7 @@ export class BlogFormComponent {
       photo: [null, [Validators.required]],
       scheduleDate: [''],
       scheduleTime: [''],
+      submitType:['']
     });
   }
 
@@ -49,6 +50,7 @@ export class BlogFormComponent {
 
   onSubmit(): void {
     if (this.blogForm.valid) {
+      this.blogForm.patchValue({ submitType: 'post' });
       this.emitData();
     } else if (!this.blogForm.valid) {
       this.emitData();
@@ -64,11 +66,15 @@ export class BlogFormComponent {
     formData.append('description', this.blogForm.value.description);
     formData.append('sceduleDate', this.blogForm.value.scheduleDate);
     formData.append('scheduleTime', this.blogForm.value.scheduleTime);
+    formData.append('submitType', this.blogForm.value.submitType);
 
     this.blogRegister.emit(formData);
   }
 
   saveDraft(): void {
-    console.log('Saving draft:', this.blogForm.value);
+    if (this.blogForm.valid) {
+      this.blogForm.patchValue({ submitType: 'draft' })
+      this.emitData();
+    }
   }
 }

@@ -2,17 +2,19 @@
     <h1 class="text-4xl font-bold text-center mb-8 text-indigo-800">Posted Blogs</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
 
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <img src="https://via.placeholder.com/400" alt="Blog Image" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <div class="flex items-center mb-4">
-            <p class="text-xs text-gray-500">August 31, 2024</p>
+      @for (blog of postedBlogs; track blog) {
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden" >
+          <img [src]="'http://localhost:3000/' + blog.image" alt="Blog Image" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex items-center mb-4">
+              <p class="text-xs text-gray-500">{{blog.createdAt}}</p>
+            </div>
+            <h2 class="text-xl font-semibold mb-2">{{blog.title}}</h2>
+            <p class="text-gray-700 mb-4">{{blog.description  }}</p>
+          <button class="bg-indigo-600 text-white p-2 rounded" (click)="singleOpen(blog._id)">Read More</button>
           </div>
-          <h2 class="text-xl font-semibold mb-2">Blog Title</h2>
-          <p class="text-gray-700 mb-4">This is a brief description of the blog post. It gives an overview of what the reader can expect.</p>
-        <button class="bg-indigo-600 text-white p-2 rounded">Read More</button>
         </div>
-      </div>
+      }
   
     </div>
   </div>
