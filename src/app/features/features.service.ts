@@ -38,4 +38,8 @@ export class FeatureService{
         return this.http.delete(`${this.blogApi}/${id}`)
     }
 
+    scheduledBlogs():Observable<any>{
+        return this.http.get(`${this.blogApi}/scheduledBlogs`)
+    }
+
 }

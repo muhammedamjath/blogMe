@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FeatureService } from '../../features.service';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-created-blogs',
   standalone: true,
   imports: [
-    
+    DatePipe
   ],
   templateUrl: './created-blogs.component.html',
   styleUrl: './created-blogs.component.css',
@@ -22,7 +23,6 @@ export class CreatedBlogsComponent implements OnInit {
   }
 
   singleOpen(id:string){
-    console.log('this is id:',id);
     this.router.navigateByUrl(`/feature/home/blogViwe/${id}`)
     
   }

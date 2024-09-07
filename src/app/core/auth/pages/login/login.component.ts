@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/auth/register']);
         } else if (res.status == 'success') {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('userEmail',res.data.email)
           this.router.navigate(['/feature/home']);
         }
       });

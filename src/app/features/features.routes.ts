@@ -5,6 +5,7 @@ import { LandingPageComponent } from "./pages/landing-page/landing-page.componen
 import { SingleViewComponent } from "./pages/single-view/single-view.component";
 import { CreatedBlogsComponent } from "./pages/created-blogs/created-blogs.component";
 import { DraftsComponent } from "./pages/drafts/drafts.component";
+import { ScheduledPostsComponent } from "./pages/scheduled-posts/scheduled-posts.component";
 
 export const featureRoutes:Routes=[
     {
@@ -16,6 +17,7 @@ export const featureRoutes:Routes=[
           {path:'blogViwe/:id',component:SingleViewComponent},
           {path:'createdblogs',component:CreatedBlogsComponent},
           {path:'drafts',component:DraftsComponent},
+          {path:'scheduled',component:ScheduledPostsComponent}
         ]
       }
 ]
