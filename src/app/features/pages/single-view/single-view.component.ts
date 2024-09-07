@@ -2,11 +2,16 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeatureService } from '../../features.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-single-view',
   standalone: true,
-  imports: [DatePipe, CommonModule],
+  imports: [
+    DatePipe,
+    CommonModule,
+    ReactiveFormsModule
+  ]    ,
   templateUrl: './single-view.component.html',
   styleUrl: './single-view.component.css',
 })
@@ -14,13 +19,23 @@ export class SingleViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private service: FeatureService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.rescheduleForm = this.fb.group({
+      newDate: ['', Validators.required],
+      newTime: ['', Validators.required]
+    });
+  }
 
+  rescheduleForm: FormGroup;
+  
   blogId: string = '';
   blog: any;
-  showDeleteBtn: boolean = false;
   email: string | null = '';
+  showRescheduleForm: boolean = false;
+  showDeleteBtn: boolean = false;
+  scheduleBtn:boolean = false
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -36,6 +51,9 @@ export class SingleViewComponent implements OnInit {
             this.showDeleteBtn = true;
           }
         }
+        if(this.blog.type == 'scheduled'){
+          this.scheduleBtn =true
+        }
       });
     }
   }
@@ -47,6 +65,31 @@ export class SingleViewComponent implements OnInit {
           this.router.navigate(['/feature/home']);
         }
       });
+    }
+  }
+
+  rescheduleFormOpen(id:string ){
+    this.showRescheduleForm = !this.showRescheduleForm
+  }
+
+  toggleRescheduleForm(): void {
+    this.showRescheduleForm = !this.showRescheduleForm;
+    if (!this.showRescheduleForm) {
+      this.rescheduleForm.reset();
+    }
+  }
+
+  onReschedule(): void {
+    if (this.rescheduleForm.valid) {
+      const rescheduleData = {
+        blogId: this.blog._id,
+        newDateTime: this.rescheduleForm.value
+      };            
+      this.service.blogReschedule(rescheduleData).subscribe((res)=>{
+        console.log(res);
+      })
+      
+      this.toggleRescheduleForm();
     }
   }
 }

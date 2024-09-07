@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FeatureService } from '../../features.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scheduled-posts',
@@ -13,7 +14,7 @@ import { FeatureService } from '../../features.service';
 })
 export class ScheduledPostsComponent implements OnInit {
 
-  constructor(private service:FeatureService){}
+  constructor(private service:FeatureService , private router:Router){}
 
   scheduledBlogs:any
 
@@ -24,6 +25,6 @@ export class ScheduledPostsComponent implements OnInit {
   }
 
   singleOpen(id:string){
-
+    this.router.navigateByUrl(`/feature/home/blogViwe/${id}`)
   }
 }

@@ -42,4 +42,10 @@ export class FeatureService{
         return this.http.get(`${this.blogApi}/scheduledBlogs`)
     }
 
+    blogReschedule(data:any):Observable<any>{
+        console.log(data);
+        
+        return this.http.post(`${this.blogApi}/rescedule`,data)
+    }
+
 }
