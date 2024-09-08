@@ -44,8 +44,11 @@ export class FeatureService{
 
     blogReschedule(data:any):Observable<any>{
         console.log(data);
-        
         return this.http.post(`${this.blogApi}/rescedule`,data)
+    }
+
+    updateBlog(data:any):Observable<any>{
+        return this.http.put(`${this.blogApi}/${data.id}` , data)
     }
 
 }

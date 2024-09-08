@@ -26,4 +26,8 @@ export class DraftsComponent implements OnInit {
   singleOpen(id:string){
     this.router.navigateByUrl(`/feature/home/blogViwe/${id}`)
   }
+
+  complete(id:string){
+    this.router.navigate([`/feature/home/updateBlog/${id}`])
+  }
 }

@@ -1,7 +1,7 @@
 <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
     <div class="px-8 py-6 bg-indigo-600">
-      <h2 class="text-3xl font-extrabold text-white text-center">Create Your Blog </h2>
+      <h2 class="text-3xl font-extrabold text-white text-center">{{title}}</h2>
     </div>
     <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="px-8 py-6 space-y-6">
       <div>
@@ -42,6 +42,15 @@
           <img [src]="imagePreview" alt="Selected image preview" class="max-w-full h-auto rounded-lg shadow-md">
         </div>
       </div>
+
+      <div *ngIf="imageUrl && !imagePreview" class="mt-4">
+        <h3 class="text-lg font-medium text-gray-900">Image Preview</h3>
+        <div class="mt-2">
+          <img [src]="'http://localhost:3000/' + imageUrl" alt="Selected image preview" class="max-w-full h-auto rounded-lg shadow-md">
+        </div>
+      </div>
+
+      
 
       <!-- Schedule Post Date and Time -->
       <div class="flex space-x-4">
