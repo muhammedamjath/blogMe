@@ -57,6 +57,7 @@ export class SidebarComponent implements  OnInit {
     const token = localStorage.getItem('token')
     if(token){
       localStorage.removeItem('token')
+      localStorage.removeItem('userEmail')
       this.router.navigate([''])
     }
   }
